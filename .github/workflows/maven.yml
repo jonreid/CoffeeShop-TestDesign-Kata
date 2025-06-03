@@ -27,17 +27,20 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Build with Maven (Expect Failing Tests)
+    - name: Build with Maven (Expecting at least one test to fail)
       run: |
         cd java
-        # Run tests and allow it to fail without stopping the workflow
         mvn -B test --fail-at-end || true
     
-        # Check the Maven surefire reports for test results
+        if [ ! -d target/surefire-reports ]; then
+          echo "Surefire reports directory not found! Failing the job."
+          exit 1
+        fi
+
         if grep -qE '<(failure|error)' target/surefire-reports/*.xml; then
           echo "Test failure or error detected — success as intended."
         else
           echo "All tests passed — this is a failure for this workflow."
           exit 1
         fi
-    
+
