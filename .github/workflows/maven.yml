@@ -31,7 +31,7 @@ jobs:
       run: |
         cd java
         # Run tests and allow it to fail without stopping the workflow
-        mvn -B test --file pom.xml || true
+        mvn -B test --fail-at-end || true
     
         # Check the Maven surefire reports for test results
         if grep -q 'FAILURE' java/target/surefire-reports/*.txt; then
