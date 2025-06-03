@@ -1,0 +1,43 @@
+name: Java CI with Maven
+
+on:
+  schedule:
+  # each fifteen day of month
+  - cron: "0 0 15 * *"
+  push:
+    paths:
+      - 'java/**'
+      - '.github/**'
+  pull_request:
+    paths:
+      - 'java/**'
+      - '.github/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build with Maven (Expect Failing Tests)
+      run: |
+        cd java
+        # Run tests and allow it to fail without stopping the workflow
+        mvn -B test --file pom.xml || true
+    
+        # Check the Maven surefire reports for test results
+        if grep -q 'FAILURE' java/target/surefire-reports/*.txt; then
+          echo "At least one test failed, as expected."
+        else
+          echo "All tests passed. Failing the workflow intentionally."
+          exit 1
+        fi
+    
