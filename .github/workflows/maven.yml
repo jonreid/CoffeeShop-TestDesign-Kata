@@ -34,10 +34,10 @@ jobs:
         mvn -B test --fail-at-end || true
     
         # Check the Maven surefire reports for test results
-        if grep -q 'FAILURE' java/target/surefire-reports/*.txt; then
-          echo "At least one test failed, as expected."
+        if grep -qE '<(failure|error)' target/surefire-reports/*.xml; then
+          echo "Test failure or error detected — success as intended."
         else
-          echo "All tests passed. Failing the workflow intentionally."
+          echo "All tests passed — this is a failure for this workflow."
           exit 1
         fi
     
