@@ -4,7 +4,7 @@ CoffeeShop Test Design Kata
 
 ## Learning to write Parameterized Tests
 
-This code base is designed to be used with this learning hour on [Parameterized Tests] (https://sammancoaching.org/learning_hours/test_design/parameterized_tests.html)
+This code base is designed to be used with this learning hour on [Parameterized Tests](https://sammancoaching.org/learning_hours/test_design/parameterized_tests.html)
 
 In the learning hour description, there's the ````do````section that requests you to create some tests with a lot of duplication where one of the tests should be failing. So that's the code base where the ```do```` is already done, and you can focus on parameterized tests.
 
