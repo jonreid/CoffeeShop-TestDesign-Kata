@@ -37,10 +37,11 @@ jobs:
           exit 1
         fi
 
-        if grep -qE '<(failure|error)' target/surefire-reports/*.xml; then
-          echo "Test failure or error detected — success as intended."
+        if grep -q "OrderStateTest\.orderCannotBeUpdatedOrCanceledIfPaid.*FAILURE" \
+          target/surefire-reports/*.txt; then
+          echo "Expected test failure detected — success as intended."
         else
-          echo "All tests passed — this is a failure for this workflow."
+          echo "Test did not fail as expected — this is a failure for this workflow."
           exit 1
         fi
 
