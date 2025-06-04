@@ -1,0 +1,33 @@
+name: Python CI
+
+on:
+  schedule:
+    # each fifteen day of month
+    - cron: "0 0 15 * *"
+  push:
+    paths:
+      - "python/**"
+      - ".github/**"
+  pull_request:
+    paths:
+      - "python/**"
+      - ".github/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
+
+      - name: all tests except the expected failing one
+        working-directory: python
+        run: uv run pytest -k "not test_order_cannot_be_updated_or_canceled_if_paid" -v
+
+      - name: expected failing test
+        working-directory: python
+        run: |
+          ! uv run pytest -k "test_order_cannot_be_updated_or_canceled_if_paid" --tb=short
