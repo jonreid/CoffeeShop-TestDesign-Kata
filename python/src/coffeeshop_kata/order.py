@@ -24,4 +24,5 @@ class Order:
             return False
         # This comparison preserves the exact same bug as Java version
         # Uses > instead of >= causing PAID status to incorrectly return False
-        return self.status.value > Status.PAID.value
+        status_order = list(Status)
+        return status_order.index(self.status) > status_order.index(Status.PAID)
