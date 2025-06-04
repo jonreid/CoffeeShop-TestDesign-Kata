@@ -16,13 +16,9 @@ class Order:
         return not self.is_paid()
 
     def is_paid(self) -> bool:
-        """
-        BUG! All statuses except PAYMENT_EXPECTED mean that it is paid.
-        Off by one error: Status.PAID should also return True.
-        """
+        # BUG! All statuses except PAYMENT_EXPECTED mean that it is paid.
+        # Off by one error: Status.PAID should also return True.
         if self.status is None:
             return False
-        # This comparison preserves the exact same bug as Java version
-        # Uses > instead of >= causing PAID status to incorrectly return False
         status_order = list(Status)
         return status_order.index(self.status) > status_order.index(Status.PAID)
