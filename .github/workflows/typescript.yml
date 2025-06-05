@@ -27,10 +27,6 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Install dependencies
-        working-directory: typescript
-        run: bun install
-
       - name: all tests except the expected failing one
         working-directory: typescript
         run: |
