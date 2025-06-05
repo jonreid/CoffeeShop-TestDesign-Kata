@@ -1,0 +1,6 @@
+input,expected_upper,expected_length
+test,TEST,4
+hello,HELLO,5
+world,WORLD,5
+bun,BUN,3
+typescript,TYPESCRIPT,10
