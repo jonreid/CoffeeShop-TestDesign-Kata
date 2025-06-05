@@ -1,49 +1,49 @@
 name: TypeScript CI
 
 on:
-  schedule:
-    # each fifteen day of month
-    - cron: "0 0 15 * *"
-  push:
-    branches:
-      - main
-    paths:
-      - "typescript/**"
-      - ".github/workflows/typescript.yml"
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "typescript/**"
-      - ".github/workflows/typescript.yml"
+    schedule:
+        # each fifteen day of month
+        - cron: "0 0 15 * *"
+    push:
+        branches:
+            - main
+        paths:
+            - "typescript/**"
+            - ".github/workflows/typescript.yml"
+    pull_request:
+        branches:
+            - main
+        paths:
+            - "typescript/**"
+            - ".github/workflows/typescript.yml"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
 
-      - name: install dependencies
-        working-directory: typescript
-        run: bun install
+            - name: install dependencies
+              working-directory: typescript
+              run: bun install
 
-      - name: type check
-        working-directory: typescript
-        run: bunx tsgo --noEmit
+            - name: type check
+              working-directory: typescript
+              run: bunx tsgo --noEmit
 
-      - name: all tests except the expected failing one
-        working-directory: typescript
-        run: |
-          # Run all tests but exclude the one we expect to fail
-          # Using a regex pattern that matches everything except the failing test
-          bun test --test-name-pattern="^(?!.*order cannot be updated or canceled if paid).*$"
+            - name: all tests except the expected failing one
+              working-directory: typescript
+              run: |
+                  # Run all tests but exclude the one we expect to fail
+                  # Using a regex pattern that matches everything except the failing test
+                  bun test --test-name-pattern="^(?!.*order cannot be updated or canceled if paid).*$"
 
-      - name: expected failing test
-        working-directory: typescript
-        run: |
-          # This test should fail due to the bug in isPaid() method
-          ! bun test --test-name-pattern="order cannot be updated or canceled if paid"
+            - name: expected failing test
+              working-directory: typescript
+              run: |
+                  # This test should fail due to the bug in isPaid() method
+                  ! bun test --test-name-pattern="order cannot be updated or canceled if paid"
