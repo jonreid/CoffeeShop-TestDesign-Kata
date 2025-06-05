@@ -176,6 +176,9 @@ describe("Parameterize from File", () => {
 
 			return lines.map((line) => {
 				const [input, expectedUpper, expectedLen] = line.split(",");
+				if (!input || !expectedUpper || !expectedLen) {
+					throw new Error(`Invalid CSV line: ${line}`);
+				}
 				return {
 					input,
 					expectedUpper,

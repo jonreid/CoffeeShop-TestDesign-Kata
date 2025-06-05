@@ -27,6 +27,10 @@ jobs:
         with:
           bun-version: latest
 
+      - name: type check
+        working-directory: typescript
+        run: bun run typecheck
+
       - name: all tests except the expected failing one
         working-directory: typescript
         run: |
