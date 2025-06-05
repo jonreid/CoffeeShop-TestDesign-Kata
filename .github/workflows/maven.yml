@@ -7,11 +7,11 @@ on:
   push:
     paths:
       - 'java/**'
-      - '.github/**'
+      - ".github/workflows/maven.yml"
   pull_request:
     paths:
       - 'java/**'
-      - '.github/**'
+      - ".github/workflows/maven.yml"
 
 jobs:
   build:
