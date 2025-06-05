@@ -10,7 +10,10 @@ In the learning hour description, there's the ```do```section that requests you 
 
 Note: There's a bug in the implementation, (marked with the comment "Bug!"), so we have a failing test here (see learning hour description for more information on why that is).
 
-In the java directory there's a ```concept``` sub-package that show-cases JUnit5 features for writing parameterized tests.
+In each language directory there's a ```concept``` sub-package/directory that show-cases a test-framework's features for writing parameterized tests.
+- [JUnit 5](https://junit.org/junit5/) for Java
+- [pytest](https://docs.pytest.org/en/stable/) for Python
+- [bun](https://bun.sh/docs/cli/test) for typescript
 
 ## Notes for contributors
 
