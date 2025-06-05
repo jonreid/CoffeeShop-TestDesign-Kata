@@ -1,45 +1,47 @@
 name: Java CI with Maven
 
 on:
-    schedule:
-        # each fifteen day of month
-        - cron: "0 0 15 * *"
-    push:
-        paths:
-            - "java/**"
-            - ".github/workflows/maven.yml"
-    pull_request:
-        paths:
-            - "java/**"
-            - ".github/workflows/maven.yml"
+  schedule:
+  # each fifteen day of month
+  - cron: "0 0 15 * *"
+  push:
+    paths:
+      - 'java/**'
+      - ".github/workflows/maven.yml"
+  pull_request:
+    paths:
+      - 'java/**'
+      - ".github/workflows/maven.yml"
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
 
-        steps:
-            - uses: actions/checkout@v4
-            - name: Set up JDK 17
-              uses: actions/setup-java@v4
-              with:
-                  java-version: "17"
-                  distribution: "temurin"
-                  cache: maven
+    runs-on: ubuntu-latest
 
-            - name: Build with Maven (Expecting at least one test to fail)
-              run: |
-                  cd java
-                  mvn -B test --fail-at-end || true
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
 
-                  if [ ! -d target/surefire-reports ]; then
-                    echo "Surefire reports directory not found! Failing the job."
-                    exit 1
-                  fi
+    - name: Build with Maven (Expecting at least one test to fail)
+      run: |
+        cd java
+        mvn -B test --fail-at-end || true
+    
+        if [ ! -d target/surefire-reports ]; then
+          echo "Surefire reports directory not found! Failing the job."
+          exit 1
+        fi
 
-                  if grep -q "OrderStateTest\.orderCannotBeUpdatedOrCanceledIfPaid.*FAILURE" \
-                    target/surefire-reports/*.txt; then
-                    echo "Expected test failure detected — success as intended."
-                  else
-                    echo "Test did not fail as expected — this is a failure for this workflow."
-                    exit 1
-                  fi
+        if grep -q "OrderStateTest\.orderCannotBeUpdatedOrCanceledIfPaid.*FAILURE" \
+          target/surefire-reports/*.txt; then
+          echo "Expected test failure detected — success as intended."
+        else
+          echo "Test did not fail as expected — this is a failure for this workflow."
+          exit 1
+        fi
+

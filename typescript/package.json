@@ -5,7 +5,7 @@
     "scripts": {
         "test": "bun test",
         "typecheck": "bunx tsgo --noEmit",
-        "format": "biome format --write . && dprint fmt README.md && dprint fmt ../.github/workflows/*.yml",
+        "format": "biome format --write .",
         "check": "bunx tsgo --noEmit && biome check ."
     },
     "devDependencies": {
