@@ -27,6 +27,10 @@ jobs:
         with:
           bun-version: latest
 
+      - name: install dependencies
+        working-directory: typescript
+        run: bun install
+
       - name: type check
         working-directory: typescript
         run: bunx tsgo --noEmit
