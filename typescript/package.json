@@ -1,14 +1,17 @@
 {
-  "name": "coffeeshop-testdesign-kata",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "test": "bun test"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+	"name": "coffeeshop-testdesign-kata",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"test": "bun test",
+		"format": "biome format --write .",
+		"check": "biome check ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	}
 }
