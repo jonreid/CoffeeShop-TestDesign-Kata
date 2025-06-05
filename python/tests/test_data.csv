@@ -1,0 +1,6 @@
+input,expected,length
+test,TEST,4
+hello,HELLO,5
+world,WORLD,5
+python,PYTHON,6
+pytest,PYTEST,6
