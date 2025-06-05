@@ -19,12 +19,33 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"complexity": {
+				"noForEach": "off"
+			}
 		}
 	},
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"include": ["tests/**/*"],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noForEach": "off"
+					},
+					"style": {
+						"useNodejsImportProtocol": "off"
+					},
+					"security": {
+						"noGlobalEval": "off"
+					}
+				}
+			}
+		}
+	]
 }

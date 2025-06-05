@@ -1,6 +1,6 @@
-import { describe, test, expect } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import { readFileSync } from "fs";
-import { join, dirname } from "path";
+import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -134,7 +134,7 @@ describe("Test with Marks", () => {
 	});
 });
 
-function generatePrimeNumbers(maxValue: number = 100): number[] {
+function generatePrimeNumbers(maxValue = 100): number[] {
 	function isPrime(n: number): boolean {
 		if (n < 2) return false;
 		for (let i = 2; i <= Math.sqrt(n); i++) {
@@ -182,7 +182,7 @@ describe("Parameterize from File", () => {
 				return {
 					input,
 					expectedUpper,
-					expectedLen: parseInt(expectedLen, 10),
+					expectedLen: Number.parseInt(expectedLen, 10),
 				};
 			});
 		} catch {
