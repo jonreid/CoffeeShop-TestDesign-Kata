@@ -109,18 +109,17 @@ class ParameterizedTests {
 		assertEquals(expected, actualValue);
 	}
 
-//	// JDK15+
-//	@CsvSource(delimiter = '|', textBlock = """
-//			test          | TEST
-//			tEst          | TEST
-//			Java          | JAVA
-//			loNGER sTriNg | LONGER STRING
-//			""")
-//	void csvSourceWithDelimiterUsingTextblock(String input, String expected) {
-//		// let's consider String#toUpperCase to be the code to test
-//		String actualValue = input.toUpperCase();
-//		assertEquals(expected, actualValue);
-//	}
+	@CsvSource(textBlock = """
+			test          | TEST
+			tEst          | TEST
+			Java          | JAVA
+			loNGER sTriNg | LONGER STRING
+			""", delimiter = '|')
+	void csvSourceWithDelimiterUsingTextblock(String input, String expected) {
+		// let's consider String#toUpperCase to be the code to test
+		String actualValue = input.toUpperCase();
+		assertEquals(expected, actualValue);
+	}
 
 	@ParameterizedTest
 	// can use files and/or resources
