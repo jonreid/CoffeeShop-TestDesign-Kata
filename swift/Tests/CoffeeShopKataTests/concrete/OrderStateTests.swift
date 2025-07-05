@@ -7,7 +7,6 @@ struct OrderStateTests {
         let order = existingOrderWithStatus(.paymentExpected)
         #expect(order.isUpdateAllowed == true)
         #expect(order.isCancelAllowed == true)
-        #expect(order.isPaid == false)
     }
     
     @Test("order cannot be updated or canceled if paid")
@@ -15,7 +14,6 @@ struct OrderStateTests {
         let order = existingOrderWithStatus(.paid)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
-        #expect(order.isPaid == true)
     }
     
     @Test("order cannot be updated or canceled if preparing")
@@ -23,7 +21,6 @@ struct OrderStateTests {
         let order = existingOrderWithStatus(.preparing)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
-        #expect(order.isPaid == true)
     }
     
     @Test("order cannot be updated or canceled if ready")
@@ -31,7 +28,6 @@ struct OrderStateTests {
         let order = existingOrderWithStatus(.ready)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
-        #expect(order.isPaid == true)
     }
     
     @Test("order cannot be updated or canceled if taken")
@@ -39,7 +35,6 @@ struct OrderStateTests {
         let order = existingOrderWithStatus(.taken)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
-        #expect(order.isPaid == true)
     }
 
     private func existingOrderWithStatus(_ status: Status) -> Order {

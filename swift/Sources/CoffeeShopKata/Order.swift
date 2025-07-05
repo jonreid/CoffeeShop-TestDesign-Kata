@@ -20,7 +20,7 @@ class Order {
     
     // BUG! All statuses except PAYMENT_EXPECTED mean that it is paid.
     // Off by one error: PAID should also return true.
-    var isPaid: Bool {
+    private var isPaid: Bool {
         guard let status else {
             return false
         }
