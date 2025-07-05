@@ -13,6 +13,7 @@ Note: There's a bug in the implementation, (marked with the comment "Bug!"), so 
 In each language directory there's a ```concept``` sub-package/directory that show-cases a test-framework's features for writing parameterized tests.
 - [JUnit 5](https://junit.org/junit5/) for Java
 - [pytest](https://docs.pytest.org/en/stable/) for Python
+- [Swift Testing](https://developer.apple.com/documentation/testing) for Swift
 - [bun](https://bun.sh/docs/cli/test) for typescript
 
 ## Notes for contributors
