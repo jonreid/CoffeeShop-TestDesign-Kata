@@ -1,9 +1,9 @@
-import Testing
 @testable import CoffeeShopKata
+import Testing
 
-struct OrderStateTests {    
+struct OrderStateTests {
     @Test("order can be updated and canceled if not paid yet")
-    func testOrderCanBeUpdatedAndCanceledIfNotPaidYet() throws {
+    func orderCanBeUpdatedAndCanceledIfNotPaidYet() throws {
         let order = existingOrderWithStatus(.paymentExpected)
         #expect(order.isUpdateAllowed == true)
         #expect(order.isCancelAllowed == true)
@@ -11,7 +11,7 @@ struct OrderStateTests {
     }
     
     @Test("order cannot be updated or canceled if paid")
-    func testOrderCannotBeUpdatedOrCanceledIfPaid() throws {
+    func orderCannotBeUpdatedOrCanceledIfPaid() throws {
         let order = existingOrderWithStatus(.paid)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
@@ -19,7 +19,7 @@ struct OrderStateTests {
     }
     
     @Test("order cannot be updated or canceled if preparing")
-    func testOrderCannotBeUpdatedOrCanceledIfPreparing() throws {
+    func orderCannotBeUpdatedOrCanceledIfPreparing() throws {
         let order = existingOrderWithStatus(.preparing)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
@@ -27,7 +27,7 @@ struct OrderStateTests {
     }
     
     @Test("order cannot be updated or canceled if ready")
-    func testOrderCannotBeUpdatedOrCanceledIfReady() throws {
+    func orderCannotBeUpdatedOrCanceledIfReady() throws {
         let order = existingOrderWithStatus(.ready)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
@@ -35,7 +35,7 @@ struct OrderStateTests {
     }
     
     @Test("order cannot be updated or canceled if taken")
-    func testOrderCannotBeUpdatedOrCanceledIfTaken() throws {
+    func orderCannotBeUpdatedOrCanceledIfTaken() throws {
         let order = existingOrderWithStatus(.taken)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
@@ -47,4 +47,4 @@ struct OrderStateTests {
         order.setStatus(status)
         return order
     }
-} 
+}

@@ -1,9 +1,7 @@
-import Foundation
-
 /**
  * Enumeration for all the statuses an Order can be in.
  */
-public enum Status: String, CaseIterable {
+enum Status: String, CaseIterable {
     /**
      * Placed, but not paid yet. Still changeable.
      */
@@ -28,4 +26,4 @@ public enum Status: String, CaseIterable {
      * The Order was completed.
      */
     case taken = "TAKEN"
-} 
+}
