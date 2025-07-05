@@ -13,11 +13,11 @@ public class Order {
     }
     
     public var isUpdateAllowed: Bool {
-        return !isPaid
+        !isPaid
     }
     
     public var isCancelAllowed: Bool {
-        return !isPaid
+        !isPaid
     }
     
     // BUG! All statuses except PAYMENT_EXPECTED mean that it is paid.
