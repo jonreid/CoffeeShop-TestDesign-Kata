@@ -3,35 +3,35 @@ import Testing
 
 struct OrderStateTests {
     @Test("order can be updated and canceled if not paid yet")
-    func orderCanBeUpdatedAndCanceledIfNotPaidYet() throws {
+    func paymentExpected() throws {
         let order = existingOrderWithStatus(.paymentExpected)
         #expect(order.isUpdateAllowed == true)
         #expect(order.isCancelAllowed == true)
     }
     
     @Test("order cannot be updated or canceled if paid")
-    func orderCannotBeUpdatedOrCanceledIfPaid() throws {
+    func paid() throws {
         let order = existingOrderWithStatus(.paid)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
     }
     
     @Test("order cannot be updated or canceled if preparing")
-    func orderCannotBeUpdatedOrCanceledIfPreparing() throws {
+    func preparing() throws {
         let order = existingOrderWithStatus(.preparing)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
     }
     
     @Test("order cannot be updated or canceled if ready")
-    func orderCannotBeUpdatedOrCanceledIfReady() throws {
+    func ready() throws {
         let order = existingOrderWithStatus(.ready)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
     }
     
     @Test("order cannot be updated or canceled if taken")
-    func orderCannotBeUpdatedOrCanceledIfTaken() throws {
+    func taken() throws {
         let order = existingOrderWithStatus(.taken)
         #expect(order.isUpdateAllowed == false)
         #expect(order.isCancelAllowed == false)
